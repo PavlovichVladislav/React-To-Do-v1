@@ -1,12 +1,13 @@
-import { FC } from 'react';
+import { ChangeEvent, FC, KeyboardEvent } from 'react';
 
 import './Input.css';
 
 type ToDoInputProps = {
     value: string;
-    onChange: () => void;
+    onChange: ({target: {value}}: ChangeEvent<HTMLInputElement>) => void;
+    onKeyPress: ({key}: KeyboardEvent<HTMLInputElement>) => void
 }
-const ToDoInput: FC<ToDoInputProps> = ({ value, onChange }) => (
+const ToDoInput: FC<ToDoInputProps> = ({ value, onChange, onKeyPress }) => (
   <div className="todo-input-wrapper">
     <i className="fas fa-plus" />
     <input
@@ -14,6 +15,7 @@ const ToDoInput: FC<ToDoInputProps> = ({ value, onChange }) => (
       placeholder="Click to add task"
       onChange={onChange}
       value={value}
+      onKeyUp={onKeyPress}
     />
   </div>
 );

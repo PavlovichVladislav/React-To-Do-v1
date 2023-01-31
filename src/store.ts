@@ -1,6 +1,6 @@
 import { createStore, compose } from 'redux';
 import rootReducer from './reducers/index';
-import { IAppState } from './types/ToDo';
+import { IPreloadeState } from './types/ToDo';
 
 declare global {
     interface Window {
@@ -10,7 +10,7 @@ declare global {
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const configureStore = (preloadedState : IAppState) => (
+const configureStore = (preloadedState : IPreloadeState) => (
   createStore(
     rootReducer,
     preloadedState,
@@ -19,6 +19,8 @@ const configureStore = (preloadedState : IAppState) => (
 );
 
 const store = configureStore({});
+
+export type RootState = ReturnType<typeof store.getState>;
 
 export default store;
 

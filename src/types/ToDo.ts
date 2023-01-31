@@ -4,6 +4,4 @@ export interface ITaskItem {
     isCompleted: boolean;
 }
 
-export interface IAppState {
-    
-}
+export interface IPreloadeState {}
