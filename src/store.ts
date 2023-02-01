@@ -1,6 +1,7 @@
-import { createStore, compose } from 'redux';
+import { createStore, compose, applyMiddleware } from 'redux';
 import rootReducer from './reducers/index';
 import { IPreloadeState } from './types/ToDo';
+import { save } from 'redux-localstorage-simple';
 
 declare global {
     interface Window {
@@ -14,7 +15,9 @@ const configureStore = (preloadedState : IPreloadeState) => (
   createStore(
     rootReducer,
     preloadedState,
-    composeEnhancers(),
+    composeEnhancers(
+      applyMiddleware(save({namespace: 'todo-list'}))
+    ),
   )
 );
 
